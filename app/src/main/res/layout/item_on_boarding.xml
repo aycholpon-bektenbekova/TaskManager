@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+   <TextView
+       android:id="@+id/skip"
+       android:text="@string/skip"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       android:padding="16dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/img_onboard"
+        android:background="@color/purple_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_title"
+        android:layout_margin="52dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_margin="16dp"
+        android:text="@string/title2"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:text="@string/description"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginStart="150dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:text="@string/get_started"
+        android:backgroundTint="@color/black"
+        android:visibility="gone"
+        android:layout_marginStart="150dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/circle_indicator"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        app:ci_drawable="@color/black"
+        app:ci_drawable_unselected="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

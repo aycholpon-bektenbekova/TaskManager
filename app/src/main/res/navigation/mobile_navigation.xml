@@ -32,4 +32,9 @@
         android:name="task.manager.ui.task.TaskFragment"
         android:label="@string/task"
         tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="task.manager.ui.onBoarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" />
 </navigation>
