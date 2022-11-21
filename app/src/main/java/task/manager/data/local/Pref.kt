@@ -23,9 +23,27 @@ class Pref(private val context: Context) {
         pref.edit().putString(SAVE_NAME, name).apply()
     }
 
+    fun getAge(): String?{
+        return pref.getString(SAVE_AGE, "7")
+    }
+    fun saveAge(age: String){
+        pref.edit().putString(SAVE_AGE, age).apply()
+    }
+
+    fun getImage(): String?{
+        return pref.getString(SAVE_IMAGE, "")
+    }
+
+    fun saveImage(image: String) {
+
+        pref.edit().putString(SAVE_IMAGE, image)
+    }
+
     companion object {
         private const val BOARDING_SHOW = "onboarding.show"
         private const val SAVE_NAME = "savename.save"
+        private const val SAVE_AGE = "save.age"
+        private const val SAVE_IMAGE = "save.image"
     }
 
 }

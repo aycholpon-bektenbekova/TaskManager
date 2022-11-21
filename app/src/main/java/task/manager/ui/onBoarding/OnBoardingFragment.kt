@@ -33,10 +33,7 @@ class OnBoardingFragment : Fragment() {
             pref.saveShowBoarding(true)
             findNavController().navigateUp()
         }
-        val indicator: CircleIndicator = view.findViewById(R.id.circle_indicator)
-        val viewPager: ViewPager = view.findViewById(R.id.view_pager)
-        indicator.setViewPager(viewPager)
-        binding.viewPager.adapter = adapter
+
 
 
     }
