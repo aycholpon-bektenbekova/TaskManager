@@ -49,12 +49,12 @@ class ProfileFragment : Fragment() {
         }
         pref = Pref(requireContext())
 
-        profileAtributs()
+        profileAttributes()
 
 
     }
 
-    private fun profileAtributs() {
+    private fun profileAttributes() {
         binding.etName.setText(pref.getName())
 
         binding.etName.addTextChangedListener {

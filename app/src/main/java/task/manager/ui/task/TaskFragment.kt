@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import task.manager.App
 import task.manager.R
 import task.manager.databinding.FragmentTaskBinding
 import task.manager.data.model.Task
@@ -36,9 +37,11 @@ class TaskFragment : Fragment() {
     }
 
     private fun saveTusk(){
-        val data = Task(binding.etTitle.text.toString(), binding.etDesc.text.toString()
+        val data = Task(
+            title = binding.etTitle.text.toString(),
+            description = binding.etDesc.text.toString()
         )
-        setFragmentResult("fr_task", bundleOf("task" to data))
+        App.db.taskDao().insert(data)
         findNavController().navigateUp()
     }
 

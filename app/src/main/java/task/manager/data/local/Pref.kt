@@ -30,14 +30,11 @@ class Pref(private val context: Context) {
         pref.edit().putString(SAVE_AGE, age).apply()
     }
 
-    fun getImage(): String?{
-        return pref.getString(SAVE_IMAGE, "")
-    }
+    fun getImage(): String? {return pref.getString(SAVE_IMAGE, "")}
 
-    fun saveImage(image: String) {
 
-        pref.edit().putString(SAVE_IMAGE, image)
-    }
+    fun saveImage(image: String) = pref.edit().putString(SAVE_IMAGE, image)
+
 
     companion object {
         private const val BOARDING_SHOW = "onboarding.show"

@@ -1,10 +1,14 @@
 package task.manager.ui.home.adapter
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import task.manager.App
 import task.manager.databinding.ItemTaskBinding
 import task.manager.data.model.Task
+
+
 
 class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf()): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
@@ -22,6 +26,12 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf()): RecyclerV
         notifyItemChanged(0)
     }
 
+    fun addTasks(newtTasks: List<Task>){
+        this.tasks.clear()
+        this.tasks.addAll(newtTasks)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int = tasks.size
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding): RecyclerView.ViewHolder(binding.root){
@@ -30,6 +40,25 @@ class TaskAdapter(private val tasks: ArrayList<Task> = arrayListOf()): RecyclerV
 
             binding.tvTitle.text = task.title
             binding.tvDesc.text = task.description
+
+            itemView.setOnLongClickListener {
+                deleteDialog(task)
+                return@setOnLongClickListener true
+            }
+        }
+
+        private fun deleteDialog(task: Task) {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Do u want to delete this task?")
+            builder.setPositiveButton("Yes"){ _, _ ->
+                App.db.taskDao().delete(task)
+            }
+            builder.setNegativeButton("No"){
+                    dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.create()
+            builder.show()
         }
     }
 }

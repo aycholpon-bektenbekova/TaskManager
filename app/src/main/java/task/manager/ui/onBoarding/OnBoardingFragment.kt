@@ -34,6 +34,9 @@ class OnBoardingFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+      /*  binding.viewPager.adapter = adapter
+        binding.circleIndicator.setViewPager(binding.viewPager.findViewById(R.id.view_pager))*/
+
 
 
     }

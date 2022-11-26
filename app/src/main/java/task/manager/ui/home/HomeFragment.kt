@@ -11,6 +11,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import task.manager.App
 import task.manager.R
 import task.manager.databinding.FragmentHomeBinding
 import task.manager.data.model.Task
@@ -39,13 +40,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentResultListener(
-            "fr_task"
-        ){
-            _, result ->
-            val task = result.getSerializable("task") as Task
-            adapter.addTask(task)
-        }
+        val data = App.db.taskDao().getAllTask()
+        adapter.addTasks(data)
 
         binding.rvTask.adapter = adapter
         binding.fab.setOnClickListener {
