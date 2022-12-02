@@ -16,4 +16,6 @@
     <string name="get_started">get started</string>
     <string name="title2">Title</string>
     <string name="age">Age</string>
+    <string name="input_your_phone_number">Input your phone number</string>
+    <string name="send_sms">Send SMS</string>
 </resources>

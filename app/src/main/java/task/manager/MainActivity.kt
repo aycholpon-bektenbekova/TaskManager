@@ -4,13 +4,11 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import me.relex.circleindicator.CircleIndicator
+import com.google.firebase.auth.FirebaseAuth
 import task.manager.data.local.Pref
 import task.manager.databinding.ActivityMainBinding
 
@@ -34,6 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         if (!pref.isBoardingShow()){
             navController.navigate(R.id.onBoardingFragment)
+        }
+
+        if (FirebaseAuth.getInstance().currentUser?.uid == null){
+            navController.navigate(R.id.authFragment)
         }
         val appBarConfiguration = AppBarConfiguration(
             setOf(
