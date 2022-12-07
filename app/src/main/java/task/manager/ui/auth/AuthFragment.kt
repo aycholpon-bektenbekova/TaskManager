@@ -7,19 +7,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import task.manager.databinding.FragmentAuthBinding
 import java.util.concurrent.TimeUnit
+import task.manager.R
 
 
 class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
-    private lateinit var auth: FirebaseAuth
+    private var auth = FirebaseAuth.getInstance()
     private lateinit var uid: String
     private lateinit var callbacks:PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private var verificationId = ""
+    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 
 
     override fun onCreateView(
@@ -43,13 +46,23 @@ class AuthFragment : Fragment() {
                 .build()
             PhoneAuthProvider.verifyPhoneNumber(options)
         }
-        binding.inAccept.btnSms.setOnClickListener {
-            val credential = PhoneAuthProvider.getCredential(
-                verificationId!!,
-                binding.inAccept.etPhoneNumber.text.toString()
-            )
-
+        binding.inAccept.btnCode.setOnClickListener {
+            examCode()
         }
+    }
+
+    private fun examCode() {
+        val credential = PhoneAuthProvider.getCredential(uid,
+            binding.inAccept.etCode.text.toString()
+        )
+
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful){
+                    Log.d("aic", "signInWithCredential:success")
+                    findNavController().navigate(R.id.navigation_home)
+                }else Log.d("aic", "signInWithCredential:error")
+            }
     }
 
     private fun initCallback() {
@@ -91,7 +104,12 @@ class AuthFragment : Fragment() {
 
                 // Save verification ID and resending token so we can use them later
                 uid = verificationId
-                Log.d("ololo", "auth succd")
+                resendToken = token
+                Log.d("aic", "auth succd")
+
+                binding.acceptContainer.isVisible = true
+                binding.authContainer.isVisible = false
+
             }
         }
 

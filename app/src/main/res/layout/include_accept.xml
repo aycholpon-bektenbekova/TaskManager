@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
-        android:id="@+id/et_phone_number"
+        android:id="@+id/et_code"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:hint="input code"
@@ -20,14 +20,14 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btn_sms"
+        android:id="@+id/btn_code"
         android:backgroundTint="@color/black"
         android:text="accept"
         android:textAllCaps="false"
         android:layout_marginTop="24dp"
         android:layout_marginStart="64dp"
-        app:layout_constraintStart_toStartOf="@+id/et_phone_number"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_number"
+        app:layout_constraintStart_toStartOf="@+id/et_code"
+        app:layout_constraintTop_toBottomOf="@+id/et_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

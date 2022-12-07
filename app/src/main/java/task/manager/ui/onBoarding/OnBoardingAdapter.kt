@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import task.manager.R
 import task.manager.data.model.OnBoard
 import task.manager.databinding.ItemOnBoardingBinding
 
 class OnBoardingAdapter(private val onStartClick: () -> Unit):
     RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>(){
 
-    private val arrayList = arrayListOf<OnBoard>(
-        OnBoard("", "Notepad", "1"),
-        OnBoard("", "Sketchbook", "2"),
-        OnBoard("", "Sticky Note", "3")
+    private val arrayList = arrayListOf(
+        OnBoard(R.raw.lottie1.toString(), "Notepad", "1"),
+        OnBoard(R.raw.lottie2.toString(), "Sketchbook", "2"),
+        OnBoard(R.raw.lottie3.toString(), "Sticky Note", "3")
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnBoardingViewHolder {

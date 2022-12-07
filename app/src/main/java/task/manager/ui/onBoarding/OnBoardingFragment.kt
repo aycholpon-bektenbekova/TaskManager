@@ -18,6 +18,7 @@ class OnBoardingFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardingBinding
     private lateinit var pref: Pref
+    private var auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,20 +31,20 @@ class OnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pref = Pref(requireContext())
+
         val adapter = OnBoardingAdapter{
-            if (FirebaseAuth.getInstance().currentUser?.uid == null){
+            if (auth.currentUser?.uid == null){
                 findNavController().navigate(R.id.authFragment)
             }else{
                 pref.saveShowBoarding(true)
                 findNavController().navigateUp()
             }
         }
-        binding.viewPager.adapter = adapter
+
 
        binding.viewPager.adapter = adapter
+
         binding.circleIndicator.setViewPager(binding.viewPager.findViewById(R.id.view_pager))
-
-
 
     }
 

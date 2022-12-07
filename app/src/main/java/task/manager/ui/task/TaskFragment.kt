@@ -16,6 +16,7 @@ import task.manager.data.model.Task
 class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
+    private val task: Task? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +30,22 @@ class TaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
             if (binding.etTitle.text.toString().isNotEmpty()) {
-                saveTusk()
-            } else {
-                binding.etTitle.error = "Заполните поле"
+                if (task !== null) {
+                    updateTask()
+                } else {
+                    saveTusk()
+                }
+            }else {
+                    binding.etTitle.error = "Заполните поле"
+                }
             }
         }
+
+    private fun updateTask() {
+        task?.title = binding.etTitle.text.toString()
+        task?.description = binding.etDesc.text.toString()
+        task?.let { App.db.taskDao().update(it) }
+        findNavController().navigateUp()
     }
 
     private fun saveTusk(){
@@ -44,5 +56,7 @@ class TaskFragment : Fragment() {
         App.db.taskDao().insert(data)
         findNavController().navigateUp()
     }
-
 }
+
+
+

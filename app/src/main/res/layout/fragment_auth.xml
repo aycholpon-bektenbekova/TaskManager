@@ -15,12 +15,18 @@
             android:id="@+id/in_auth"
             layout="@layout/include_auth"/>
 
-        <include
-            android:id="@+id/in_accept"
-            layout="@layout/include_accept"/>
-
-
     </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/accept_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <include
+                android:id="@+id/in_accept"
+                layout="@layout/include_accept" />
+        </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
